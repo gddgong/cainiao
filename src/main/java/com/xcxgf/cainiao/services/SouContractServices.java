@@ -24,7 +24,11 @@ public class SouContractServices {
      */
     public int getContractCount(HttpServletRequest request){
         String name=request.getParameter("name");
-        return souContractMapper.getContractCount(name);
+        Boolean isDelete=false;
+        if(request.getParameter("isDelete").equals("true")){
+            isDelete=true;
+        }
+        return souContractMapper.getContractCount(name,isDelete);
     }
 
     /**
@@ -36,7 +40,11 @@ public class SouContractServices {
         int pageSize=Integer.parseInt(request.getParameter("pageSize"));
         int startPage=(Integer.parseInt(request.getParameter("startPage"))-1)*pageSize;
         String name=request.getParameter("name");
-        return souContractMapper.getContractList(startPage,pageSize,name);
+        Boolean isDelete=false;
+        if(request.getParameter("isDelete").equals("true")){
+            isDelete=true;
+        }
+        return souContractMapper.getContractList(startPage,pageSize,name,isDelete);
     }
 
     /**

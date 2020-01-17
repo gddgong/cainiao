@@ -81,7 +81,11 @@ public class AccountService {
      */
     public int getAccountNameCount(HttpServletRequest request){
         String name=request.getParameter("name");
-        return accountMapper.getAccountNameCount(name);
+        Boolean isDelete=false;
+        if(request.getParameter("isDelete").equals("true")){
+            isDelete=true;
+        }
+        return accountMapper.getAccountNameCount(name,isDelete);
     }
 
 
