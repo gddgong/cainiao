@@ -47,8 +47,8 @@ public interface AccountMapper {
      * @return
      */
 
-    @Select("select count(*) from dormitoryfirstinfo  where isDelete=false and owner like CONCAT('%',#{name},'%')")
-    public int getAccountNameCount(String name);
+    @Select("select count(*) from dormitoryfirstinfo  where isDelete=#{isDelete} and owner like CONCAT('%',#{name},'%')")
+    public int getAccountNameCount(String name,Boolean isDelete);
 
     /**
      * 获取所选合同的业主信息

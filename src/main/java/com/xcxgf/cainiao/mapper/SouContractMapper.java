@@ -13,8 +13,8 @@ public interface SouContractMapper {
      * @param name
      * @return
      */
-    @Select("select count(*) from sousoucontractinfo where companyName like CONCAT('%',#{name},'%') and isDelete=false")
-    public int getContractCount(String name);
+    @Select("select count(*) from sousoucontractinfo where companyName like CONCAT('%',#{name},'%') and isDelete=#{isDelete}")
+    public int getContractCount(String name,Boolean isDelete);
 
     /**
      * 检查公司学号是否与其他公司重复
@@ -57,8 +57,8 @@ public interface SouContractMapper {
      * @param name
      * @return
      */
-    @Select("select * from sousoucontractinfo where companyName like CONCAT('%',#{name},'%') and isDelete=false order by htEndTime limit #{startPage},#{pageSize}")
-    public List<SouContract> getContractList(int startPage, int pageSize, String name);
+    @Select("select * from sousoucontractinfo where companyName like CONCAT('%',#{name},'%') and isDelete=#{isDelete} order by htEndTime limit #{startPage},#{pageSize}")
+    public List<SouContract> getContractList(int startPage, int pageSize, String name,Boolean isDelete);
 
     /**
      * 根据学号搜索全部合同
